@@ -12,6 +12,8 @@ import { SignupComponent } from './signup/signup.component';
 import { MembersComponent } from './members/members.component';
 import { AuthGuard } from './auth.service';
 import { routes } from './app.routes';
+import { HomeComponent } from './home/home.component';
+import { NavigateComponent } from './navigate/navigate.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyChwh3aLut1bbNq8J2elNwUOurbM35tKHc",
@@ -27,7 +29,9 @@ export const firebaseConfig = {
     LoginComponent,
     EmailComponent,
     SignupComponent,
-    MembersComponent
+    MembersComponent,
+    HomeComponent,
+    NavigateComponent
   ],
   imports: [
     BrowserModule,
