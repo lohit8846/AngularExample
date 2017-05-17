@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
+import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 import { Router } from '@angular/router';
 import { moveIn, fallIn, moveInLeft } from '../router.animations';
 
@@ -10,13 +11,18 @@ import { moveIn, fallIn, moveInLeft } from '../router.animations';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  fullName: any;
+  displayName: any;
 
-  constructor(public af: AngularFire, private router: Router) {
+  constructor(public af: AngularFire, public db: AngularFireDatabase, private router: Router) {
     this.af.auth.subscribe(auth => {
       if (auth) {
-        console.log(auth)
-        this.fullName = auth;
+        console.log(auth);
+        this.displayName = auth.auth.displayName;
+        const usersObservable = db.object('/users/' + auth.uid);
+        usersObservable.set({
+          displayName: auth.auth.displayName,
+          email: auth.auth.email
+        });
       }
     });
   }
