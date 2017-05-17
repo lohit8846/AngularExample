@@ -34,6 +34,7 @@
       <li><a href="/browse">Browse Postings</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
+	  <li><a (click)="paymentMethod()">Payment Method</a></li>
       <li><a (click)="logout()">Logout</a></li>
 
       <li ng-show="signedIn()" class="dropdown">
