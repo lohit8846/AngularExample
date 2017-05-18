@@ -9,6 +9,10 @@ export class PostComponent implements OnInit {
 
   constructor() { }
 
+  submitPost() {
+  	console.log("works");
+  }
+
   ngOnInit() {
   }
 

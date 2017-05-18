@@ -15,7 +15,7 @@ export const router: Routes = [
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
     { path: 'login-email', component: EmailComponent },
-    { path: 'post', component: EmailComponent },
+    { path: 'post', component: PostComponent },
     { path: 'browseposts', component: BrowsepostsComponent },
     { path: 'home', component: HomeComponent, canActivate: [AuthGuard] }
 ]
