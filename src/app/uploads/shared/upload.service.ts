@@ -30,8 +30,8 @@ export class UploadService {
           // upload success
           upload.url = this.uploadTask.snapshot.downloadURL;
           upload.name = upload.file.name;
-          const key = this.saveFileData(upload)
-          callback(key);
+          const key = this.saveFileData(upload);
+          callback(this.saveFileData(upload));
         }
       );
   }

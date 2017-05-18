@@ -35,16 +35,15 @@ export class PostComponent implements OnInit {
   uploadClassFile() {
     let file = this.selectedFiles.item(0);
     this.currentUpload = new Upload(file);
-    this.upSvc.pushUpload(this.currentUpload, function(key){
-
-       this.classFile = key;
+    this.upSvc.pushUpload(this.currentUpload, (key) => {
+      this.classFile = key;
     });
   }
 
   uploadTestFile() {
     let file = this.selectedFiles.item(0);
     this.currentUpload = new Upload(file);
-    this.upSvc.pushUpload(this.currentUpload, function(key){
+    this.upSvc.pushUpload(this.currentUpload, (key) => {
 
       this.testFile = key;
     });
@@ -52,7 +51,6 @@ export class PostComponent implements OnInit {
 
 
   uploadPosting() {
-
     if (this.compensation !== undefined && this.classFile !== undefined && this.testFile !== undefined) {
        const postsObservable = this.db.list('/posts/');
        postsObservable.push({
