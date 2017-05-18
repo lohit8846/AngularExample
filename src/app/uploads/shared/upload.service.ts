@@ -14,31 +14,31 @@ export class UploadService {
   private uploadTask: firebase.storage.UploadTask;
   //uploads: FirebaseListObservable;
 
-  pushUpload(upload: Upload) {
+  pushUpload(upload: Upload, callback: any) {
     let storageRef = firebase.storage().ref();
     this.uploadTask = storageRef.child(`${this.basePath}/${upload.file.name}`).put(upload.file);
 
     this.uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED,
-      (snapshot) =>  {
-        // upload in progress
-        upload.progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-      },
-      (error) => {
-        // upload failed
-        console.log(error);
-      },
-      () => {
-        // upload success
-        upload.url = this.uploadTask.snapshot.downloadURL;
-        upload.name = upload.file.name;
-        this.saveFileData(upload);
-      }
-    );
+        (snapshot) =>  {
+          // upload in progress
+          upload.progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        },
+        (error) => {
+          // upload failed
+          console.log(error);
+        },
+        () => {
+          // upload success
+          upload.url = this.uploadTask.snapshot.downloadURL;
+          upload.name = upload.file.name;
+          callback(this.saveFileData(upload));
+        }
+      );
   }
 
   // Writes the file details to the realtime db
   private saveFileData(upload: Upload) {
-    this.db.list(`${this.basePath}/`).push(upload);
+    return this.db.list(`${this.basePath}/`).push(upload).key;
   }
 
   deleteUpload(upload: Upload) {

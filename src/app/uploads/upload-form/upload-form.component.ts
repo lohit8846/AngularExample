@@ -21,7 +21,7 @@ export class UploadFormComponent {
   uploadSingle() {
     let file = this.selectedFiles.item(0);
     this.currentUpload = new Upload(file);
-    this.upSvc.pushUpload(this.currentUpload);
+    //const filename = this.upSvc.pushUpload(this.currentUpload,function());
   }
 
   uploadMulti() {
@@ -29,7 +29,8 @@ export class UploadFormComponent {
     let filesIndex = _.range(files.length);
     _.each(filesIndex, (idx) => {
       this.currentUpload = new Upload(files[idx]);
-      this.upSvc.pushUpload(this.currentUpload);}
+      //this.upSvc.pushUpload(this.currentUpload);
+      }
     );
   }
 

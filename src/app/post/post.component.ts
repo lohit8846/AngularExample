@@ -5,6 +5,7 @@ import { UploadService } from '../uploads/shared/upload.service';
 import { Upload } from '../uploads/shared/upload';
 import * as _ from "lodash";
 import { Router } from '@angular/router';
+import {noUndefined} from "@angular/compiler/src/util";
 
 @Component({
   selector: 'app-post',
@@ -16,7 +17,9 @@ export class PostComponent implements OnInit {
   currentUpload: Upload;
   auth: any;
   displayName: any;
+  compensation: any;
   classFile: any;
+  testFile: any;
 
   constructor(@Inject(FirebaseApp) firebaseApp: any, public af: AngularFire, public db: AngularFireDatabase,  private router: Router,private upSvc: UploadService) {
     this.af.auth.subscribe(auth => {
@@ -31,30 +34,36 @@ export class PostComponent implements OnInit {
     this.selectedFiles = event.target.files;
   }
 
-  uploadSingle() {
+  uploadClassFile() {
     let file = this.selectedFiles.item(0);
     this.currentUpload = new Upload(file);
-    this.upSvc.pushUpload(this.currentUpload);
+    this.upSvc.pushUpload(this.currentUpload, function(key){
+
+       this.classFile = key;
+    });
   }
 
-  uploadMulti() {
-    let files = this.selectedFiles;
-    let filesIndex = _.range(files.length);
-    _.each(filesIndex, (idx) => {
-      this.currentUpload = new Upload(files[idx]);
-      this.upSvc.pushUpload(this.currentUpload);}
-    );
+  uploadTestFile() {
+    let file = this.selectedFiles.item(0);
+    this.currentUpload = new Upload(file);
+    this.upSvc.pushUpload(this.currentUpload, function(key){
+
+      this.testFile = key;
+    });
   }
+
 
   uploadPosting() {
 
-    console.log(this.classFile);
-    /*const postsObservable = this.db.list('/posts/');
-    postsObservable.push({
-      compensation: 'lol',
-      skeletonFile: 'lol'
-    });*/
-
+    if (this.compensation !== undefined && this.classFile !== undefined && this.testFile !== undefined) {
+       const postsObservable = this.db.list('/posts/');
+       postsObservable.push({
+          compensation: this.compensation,
+          classFile: this.classFile,
+          testFile: this.testFile
+       });
+      this.router.navigateByUrl('/home');
+    }
   }
 
   ngOnInit() {
