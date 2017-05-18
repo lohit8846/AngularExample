@@ -9,6 +9,7 @@ import { EmailComponent } from './email/email.component';
 import { HomeComponent } from './home/home.component';
 import { PostComponent } from './post/post.component';
 import { BrowsepostsComponent } from './browseposts/browseposts.component';
+import { SubmissionComponent } from './submission/submission.component';
 
 export const router: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -17,6 +18,7 @@ export const router: Routes = [
     { path: 'login-email', component: EmailComponent },
     { path: 'post', component: PostComponent },
     { path: 'browseposts', component: BrowsepostsComponent },
+    { path: 'submission', component: SubmissionComponent },
     { path: 'home', component: HomeComponent, canActivate: [AuthGuard] }
 ]
 

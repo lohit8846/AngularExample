@@ -34,7 +34,7 @@
                 <ul class="nav navbar-nav navbar-left">
                     <li><a href="/post">Post a Method</a>
                     </li>
-                    <li><a href="/browse">Browse Postings</a>
+                    <li><a href="/browseposts">Browse Postings</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -90,6 +90,8 @@
                             </div>
                             Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-md-4">
                             <label>
                                 <input type="file" (change)="detectFiles($event)">
@@ -99,7 +101,7 @@
                             <button [disabled]="!selectedFiles" (click)="uploadClassFile()">Upload JavaDocs</button>
                         </div>
                     </div>
-                    <div>
+                    <div class="row">
                         <div class="col-md-4">
                             <label>
                                 <input type="file" (change)="detectFiles($event)" multiple>
