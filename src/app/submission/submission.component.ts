@@ -40,6 +40,10 @@ export class SubmissionComponent implements OnInit {
     });
   }
 
+  setTimeout(function() {
+      this.router.navigate(['/browseposts']);
+  }, 3000);
+
 
   ngOnInit() {
   }
