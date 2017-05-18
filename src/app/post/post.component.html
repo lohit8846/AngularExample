@@ -83,6 +83,15 @@
         <h1>Submit posting</h1>
         <form>
             <div class="row">
+              <div class="col-md-6">
+                <p>Title</p>
+              </div>
+              <div class="col-md-6">
+                <input [(ngModel)]="title" type="number" />
+              </div>
+            </div>
+
+            <div class="row">
               <div class="col-md-12">
                 <div *ngIf="currentUpload">
                     <div class="progress">
@@ -120,7 +129,7 @@
                 <p>Compensation Amount</p>
               </div>
               <div class="col-md-6">
-                <input type="number" />
+                <input [(ngModel)]="compensation" type="number" />
               </div>
             </div>
 
