@@ -79,36 +79,43 @@
 
 
     <div class="jumbotron">
-        <h1>Submit A Solution</h1>
+      <div class="container">
+        <h1>Submit a solution</h1>
         <form>
             <div class="row">
-                <div class="col-md-8">
-                    <div class="row">
-                        <div *ngIf="currentUpload">
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
-                            </div>
-                            Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
-                        </div>
+              <div class="col-md-12">
+                <div *ngIf="currentUpload">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <label>
-                                <input type="file" (change)="detectFiles($event)">
-                            </label>
-                            <br />
-                           <button [disabled]="!selectedFiles" (click)="uploadClassFile()">Upload Java Source</button>
-                        </div>
-                        <div class="col-md-6">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <button (click)="uploadMulti()">Submit Post</button>
-                    </div>
+                    Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
                 </div>
+              </div>  
             </div>
-        </form>
 
+            <div class="row">
+              <div class="col-md-6">
+                  <label>
+                      <input type="file" (change)="detectFiles($event)">
+                  </label>
+              </div>
+              <div class="col-md-6">
+                  <button [disabled]="!selectedFiles" (click)="uploadCodeFile()">Upload Java Source</button>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+              </div>
+              <div class="col-md-4">
+                <p align="center"><button (click)="submitSubmission()">Submit Solution</button></p>
+              </div>
+              <div class="col-md-4">
+              </div>
+            </div>
+
+        </form>
+        </div>
     </div>
 
 

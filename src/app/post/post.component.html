@@ -79,48 +79,63 @@
 
 
     <div class="jumbotron">
+      <div class="container">
         <h1>Submit posting</h1>
         <form>
             <div class="row">
-                <div class="col-md-8">
-                    <div class="row">
-                        <div *ngIf="currentUpload">
-                            <div class="progress">
-                                <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
-                            </div>
-                            Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
-                        </div>
+              <div class="col-md-12">
+                <div *ngIf="currentUpload">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <label>
-                                <input type="file" (change)="detectFiles($event)">
-                            </label>
-                        </div>
-                        <div class="col-md-4">
-                            <button [disabled]="!selectedFiles" (click)="uploadClassFile()">Upload JavaDoc Class</button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-4">
-                            <label>
-                                <input type="file" (change)="detectFiles($event)" multiple>
-                            </label>
-                        </div>
-                        <div class="col-md-4">
-                            <button [disabled]="!selectedFiles" (click)="uploadTestFile()">Upload JUnit Test</button>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <input type="number" />
-                    </div>
-                    <div class="row">
-                        <button (click)="uploadPosting()">Submit Post</button>
-                    </div>
+                    Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
                 </div>
+              </div>  
             </div>
-        </form>
 
+            <div class="row">
+              <div class="col-md-6">
+                  <label>
+                      <input type="file" (change)="detectFiles($event)">
+                  </label>
+              </div>
+              <div class="col-md-6">
+                  <button [disabled]="!selectedFiles" (click)="uploadClassFile()">Upload JavaDoc Class</button>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                  <label>
+                      <input type="file" (change)="detectFiles($event)" multiple>
+                  </label>
+              </div>
+              <div class="col-md-6">
+                  <button [disabled]="!selectedFiles" (click)="uploadTestFile()">Upload JUnit Test</button>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <p>Compensation Amount</p>
+              </div>
+              <div class="col-md-6">
+                <input type="number" />
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-4">
+              </div>
+              <div class="col-md-4">
+                <p align="center"><button (click)="uploadPosting()">Submit Post</button></p>
+              </div>
+              <div class="col-md-4">
+              </div>
+            </div>
+
+        </form>
+        </div>
     </div>
 
 

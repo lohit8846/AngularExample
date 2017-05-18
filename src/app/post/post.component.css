@@ -5,3 +5,7 @@ form {
 button {
 	padding: 0;
 }
+
+.row {
+	padding: 20px;
+}
