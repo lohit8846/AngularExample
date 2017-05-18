@@ -3,9 +3,7 @@ import { AngularFire, AuthProviders, AuthMethods, FirebaseApp } from 'angularfir
 import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 import { UploadService } from '../uploads/shared/upload.service';
 import { Upload } from '../uploads/shared/upload';
-import * as _ from "lodash";
 import { Router } from '@angular/router';
-import {noUndefined} from "@angular/compiler/src/util";
 
 @Component({
   selector: 'app-post',
