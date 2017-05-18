@@ -1,3 +1,11 @@
 .navbar {
     margin-bottom: 0px;
 }
+
+.row {
+	padding: 20px;
+}
+
+h2 {
+	padding-bottom: 50px;
+}
