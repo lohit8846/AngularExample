@@ -14,7 +14,7 @@ import { moveIn } from '../router.animations';
 export class LoginComponent implements OnInit {
     error: any;
 
-    constructor(public af: AngularFire,private router: Router) {
+    constructor(public af: AngularFire, private router: Router) {
 
       this.af.auth.subscribe(auth => {
       	if(auth) {
@@ -33,7 +33,7 @@ export class LoginComponent implements OnInit {
       }).catch(
         (err) => {
         this.error = err;
-      })
+      });
   }
 
   loginGoogle() {

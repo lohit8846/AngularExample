@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
       if (auth) {
         console.log(auth);
         this.displayName = auth.auth.displayName;
-        const usersObservable = db.object('/users/' + auth.uid);
+        const usersObservable = db.object('/users/' + auth.uid)
         usersObservable.set({
           displayName: auth.auth.displayName,
           email: auth.auth.email
