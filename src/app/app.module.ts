@@ -14,6 +14,8 @@ import { routes } from './app.routes';
 import { HomeComponent } from './home/home.component';
 import { PostComponent } from './post/post.component';
 import { BrowsepostsComponent } from './browseposts/browseposts.component';
+import { UploadListComponent } from './uploads/upload-list/upload-list.component';
+import { UploadFormComponent } from './uploads/upload-form/upload-form.component';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyChwh3aLut1bbNq8J2elNwUOurbM35tKHc",
@@ -31,7 +33,9 @@ export const firebaseConfig = {
     SignupComponent,
     HomeComponent,
     PostComponent,
-    BrowsepostsComponent
+    BrowsepostsComponent,
+    UploadListComponent,
+    UploadFormComponent
   ],
   imports: [
     BrowserModule,
