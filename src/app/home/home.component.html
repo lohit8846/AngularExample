@@ -38,10 +38,10 @@
       <li><a (click)="logout()">Logout</a></li>
 
       <li ng-show="signedIn()" class="dropdown">
-        <a href="" class="dropdown-toggle" data-toggle="dropdown">
+        <a href="home" class="dropdown-toggle" data-toggle="dropdown">
           <img src="{{fullName}}" class="img-circle gravatar">
           &nbsp;
-          {{fullName}}
+          {{displayName}}
           <span class="mdi-navigation-expand-more"></span></a>
 
         <ul class="dropdown-menu">

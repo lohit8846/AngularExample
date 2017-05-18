@@ -40,7 +40,7 @@
           <a href="" class="dropdown-toggle" data-toggle="dropdown">
             <img src="{{fullName}}" class="img-circle gravatar">
             &nbsp;
-            {{fullName}}
+            {{displayName}}
             <span class="mdi-navigation-expand-more"></span></a>
 
           <ul class="dropdown-menu">
@@ -70,8 +70,11 @@
     <div class="row">
       <div class="col-md-6">
         <div class="row">
-          <p>Select a .java specification file to upload</p><input type="file" id="file" name="file"/>
-          <p><button ng-click="submitPost()">Submit Post</button></p>
+          <p>Select a .java specification file to upload</p><input [(ngModel)]="classFile" class="form-control" (change)="onChange($event)" type="file" name="file"/>
+          <input [(ngModel)]="compensation" type="number" name="compensationAmount"/>
+        </div>
+        <div class="row">
+          <button (click)="uploadPosting()">Submit Post</button>
         </div>
       </div>
     </div>

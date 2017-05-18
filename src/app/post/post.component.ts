@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class PostComponent implements OnInit {
   auth: any;
   displayName: any;
-  compensation: string;
+  classFile: any;
 
   constructor(@Inject(FirebaseApp) firebaseApp: any, public af: AngularFire, public db: AngularFireDatabase,  private router: Router) {
     this.af.auth.subscribe(auth => {
@@ -24,7 +24,7 @@ export class PostComponent implements OnInit {
 
   uploadPosting() {
 
-    console.log(this.compensation);
+    console.log(this.classFile);
     /*const postsObservable = this.db.list('/posts/');
     postsObservable.push({
       compensation: 'lol',
