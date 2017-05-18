@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { EmailComponent } from './email/email.component';
 import { SignupComponent } from './signup/signup.component';
 import { AuthGuard } from './auth.service';
+import { UploadService } from './uploads/shared/upload.service';
 import { routes } from './app.routes';
 import { HomeComponent } from './home/home.component';
 import { PostComponent } from './post/post.component';
@@ -45,7 +46,7 @@ export const firebaseConfig = {
     routes,
     BrowserAnimationsModule
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, UploadService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
