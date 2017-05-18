@@ -18,6 +18,7 @@ export class PostComponent implements OnInit {
   compensation: any;
   classFile: any;
   testFile: any;
+  title: any;
 
   constructor(@Inject(FirebaseApp) firebaseApp: any, public af: AngularFire, public db: AngularFireDatabase,  private router: Router,private upSvc: UploadService) {
     this.af.auth.subscribe(auth => {
@@ -55,6 +56,7 @@ export class PostComponent implements OnInit {
        const postsObservable = this.db.list('/posts/');
        postsObservable.push({
           posterId: this.auth.uid,
+          title: this.title,
           compensation: this.compensation,
           classFile: this.classFile,
           testFile: this.testFile
