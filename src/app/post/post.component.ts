@@ -56,6 +56,7 @@ export class PostComponent implements OnInit {
     if (this.compensation !== undefined && this.classFile !== undefined && this.testFile !== undefined) {
        const postsObservable = this.db.list('/posts/');
        postsObservable.push({
+          posterId: this.auth.uid,
           compensation: this.compensation,
           classFile: this.classFile,
           testFile: this.testFile
