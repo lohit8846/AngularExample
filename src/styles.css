@@ -63,8 +63,6 @@ h2 {
     font-size:1em;
 }
 
-
-
 .loading {
   width: 30px;
   height: 30px;
@@ -109,4 +107,8 @@ h2 {
     button {
         font-size:1em;
     }
+}
+
+.navbar {
+  margin-bottom: 0px;
 }

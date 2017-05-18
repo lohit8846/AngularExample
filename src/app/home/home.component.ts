@@ -16,7 +16,6 @@ export class HomeComponent implements OnInit {
   constructor(public af: AngularFire, public db: AngularFireDatabase, private router: Router) {
     this.af.auth.subscribe(auth => {
       if (auth) {
-        console.log(auth);
         this.displayName = auth.auth.displayName;
         const usersObservable = db.object('/users/' + auth.uid)
         usersObservable.set({
