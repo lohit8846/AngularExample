@@ -77,43 +77,23 @@
 
     </nav>
 
-
     <div class="jumbotron">
     	<div class="container">
 	        <h2>Browse Available Postings</h2>
-            <div class="row">
+            <div class="row" *ngFor="let post of posts | async">
                 <div class="col-md-12">
-                    <p><a href="/submission">Hello World</a><p>
+                    <p><a href="/submission">{{ post.title }}</a><p>
+                </div>
+                <div class="col-md-12">
+                    <p>Poster: {{ post.name }}<p>
                 </div>
                 <div class="col-md-6">
-                    <p>Poster: Devon Grove</p>
+                    <p>Date: {{ post.createdAt | date: "dd MMM yyyy hh:mm a" }}</p>
                 </div>
                 <div class="col-md-6">
-                    <p>Date: 16 May 2017</p>
+                    <p>Compensation Amount: ${{ post.compensation }}</p>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <p><a href="/submission">My Test Posting</a><p>
-                </div>
-                <div class="col-md-6">
-                    <p>Poster: Devon Grove</p>
-                </div>
-                <div class="col-md-6">
-                    <p>Date: 18 May 2017</p>
-                </div>
-            </div>
-	        <div class="row">
-                <div class="col-md-12">
-                    <p><a href="/submission">Natural Order Comparator for Strings</a><p>
-                </div>
-                <div class="col-md-6">
-                    <p>Poster: Lohit Vankineni</p>
-                </div>
-                <div class="col-md-6">
-                    <p>Date: 18 May 2017</p>                
-                </div>
-	        </div>
         </div>
 
     </div>
