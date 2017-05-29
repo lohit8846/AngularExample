@@ -56,6 +56,8 @@ export class PostComponent implements OnInit {
        const postsObservable = this.db.list('/posts/');
        postsObservable.push({
           posterId: this.auth.uid,
+          name: this.displayName,
+          createdAt: Date.now(),
           title: this.title,
           compensation: this.compensation,
           classFile: this.classFile,
