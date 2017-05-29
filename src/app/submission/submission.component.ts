@@ -4,6 +4,7 @@ import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database
 import { UploadService } from '../uploads/shared/upload.service';
 import { Upload } from '../uploads/shared/upload';
 import { Router } from '@angular/router';
+import {PostInfoService} from "../post-info.service";
 
 @Component({
   selector: 'app-submission',
@@ -18,11 +19,12 @@ export class SubmissionComponent implements OnInit {
   classFile: any;
   codeFile: any;
 
-  constructor(@Inject(FirebaseApp) firebaseApp: any, public af: AngularFire, public db: AngularFireDatabase,  private router: Router,private upSvc: UploadService) {
+  constructor(@Inject(FirebaseApp) firebaseApp: any, public af: AngularFire, public db: AngularFireDatabase,  private router: Router,private upSvc: UploadService, private postSvc: PostInfoService) {
     this.af.auth.subscribe(auth => {
       if (auth) {
         this.displayName = auth.auth.displayName;
         this.auth = auth;
+        console.log(this.postSvc.getPostId());
       }
     });
   }
