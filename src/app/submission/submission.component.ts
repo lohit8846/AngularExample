@@ -29,7 +29,8 @@ export class SubmissionComponent implements OnInit {
         this.post = db.object('/posts/' + this.postSvc.getPostId(), { preserveSnapshot: true });
         this.post.subscribe(snapshot => {
           this.classFile = db.object('/uploads/' + snapshot.val().classFile)
-          this.classFile = db.object('/uploads/' + snapshot.val().testFile)
+          this.testFile = db.object('/uploads/' + snapshot.val().testFile)
+          this.post = snapshot.val();
         });
       }
     });
