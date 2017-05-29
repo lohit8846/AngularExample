@@ -14,10 +14,6 @@ export class AppComponent {
 
   }
 
-  routeLink(route: string){
-    this.router.navigate(['/' + route]);
-  }
-
   logout() {
     this.af.auth.logout();
     console.log('logged out');

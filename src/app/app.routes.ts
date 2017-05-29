@@ -13,7 +13,7 @@ import { SubmissionComponent } from './submission/submission.component';
 import { ResultsComponent } from './results/results.component';
 
 export const router: Routes = [
-    { path: '', redirectTo: 'login', pathMatch: 'full' },
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
     { path: 'login-email', component: EmailComponent },
