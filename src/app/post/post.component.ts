@@ -63,7 +63,7 @@ export class PostComponent implements OnInit {
           classFile: this.classFile,
           testFile: this.testFile
        });
-      this.router.navigateByUrl('/home');
+      this.router.navigateByUrl('/browseposts');
     }
   }
 

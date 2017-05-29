@@ -109,6 +109,10 @@ h2 {
     }
 }
 
-.navbar {
-  margin-bottom: 0px;
+a {
+  color: #333;
+}
+
+a:hover a:focus {
+  text-decoration: none;
 }

@@ -13,3 +13,16 @@ h2 {
 nav {
 	margin-bottom: 0px;
 }
+
+.navbar {
+	background-color: #003366;
+}
+
+.navbar .navbar-brand {
+	font-weight: 600;
+}
+
+.navbar a {
+	color: #FFF;
+	font-weight: 400;
+}
