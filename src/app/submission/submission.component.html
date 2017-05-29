@@ -1,144 +1,48 @@
-<!doctype html>
-<html class="no-js">
-
-<head>
-    <meta charset="utf-8">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width">
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.css">
-    <link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.9/toaster.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.2.1/css/material.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.2.1/css/ripples.css" />
-
-</head>
-
-<body ng-app="PCDuelApp">
-
-    <nav class="navbar navbar-info" >
-        <div class="container-fluid">
-          <!-- Brand and toggle get grouped for better mobile display -->
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/home">CodeOurWork</a>
-          </div>
-
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-
-            <ul class="nav navbar-nav navbar-left">
-              <li><a href="/post">Post a Method</a></li>
-              <li><a href="/browseposts">Browse Postings</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-              <li><a (click)="paymentMethod()">Payment Method</a></li>
-              <li><a (click)="logout()">Logout</a></li>
-
-              <li ng-show="signedIn()" class="dropdown">
-                <a href="home" class="dropdown-toggle" data-toggle="dropdown">
-                  <img src="{{fullName}}" class="img-circle gravatar">
-                  &nbsp;
-                  {{displayName}}
-                  <span class="mdi-navigation-expand-more"></span></a>
-
-                <ul class="dropdown-menu">
-                  <li><a href="#/profile">
-                    <i class="mdi-action-assessment"></i> Profile
-                  </a></li>
-                  <li><a href="#/teams">
-                    <i class="mdi-action-assessment"></i> Teams
-                  </a></li>
-                  <li><a href="" data-toggle="modal" data-target="#pasModal">
-                    <i class="mdi-action-lock"></i> Change Password</a></li>
-                  <li><a href="" ng-click="logout()">
-                    <i class="mdi-action-exit-to-app"></i>Logout</a></li>
-                </ul>
-              </li>
-            </ul>
-
-          </div><!-- /.navbar-collapse -->
-        </div><!-- /.container-fluid -->
-    </nav>
-
-
-    <div class="jumbotron">
-      <div class="container">
-        <h2>Submit a solution: {{ post.title }}</h2>
-        <form>
-            <div class="row">
-                <div class="col-md-12">
-                    <p><strong>Poster: </strong>{{ post.name }}</p>
-                </div>  
-                <div class="col-md-12">
-                    <p><a href="https://firebasestorage.googleapis.com/v0/b/devonauthproject.appspot.com/o/uploads%2FNatOrderComparatorSkeleton.java?alt=media&token=257528f6-ab6a-499d-b8a7-0e5e22c7b061">JavaDoc</a> // <a href="https://firebasestorage.googleapis.com/v0/b/devonauthproject.appspot.com/o/uploads%2FNatOrderComparatorTestSuite.java?alt=media&token=66568fbc-9659-40b9-aa1f-193266816a2f">JUnit Test Suite</a></p>
-                </div>
+<div class="jumbotron">
+  <div class="container">
+    <h2>Submit a solution: {{ post.title }}</h2>
+    <form>
+        <div class="row">
+            <div class="col-md-12">
+                <p><strong>Poster: </strong>{{ post.name }}</p>
+            </div>  
+            <div class="col-md-12">
+                <p><a href="https://firebasestorage.googleapis.com/v0/b/devonauthproject.appspot.com/o/uploads%2FNatOrderComparatorSkeleton.java?alt=media&token=257528f6-ab6a-499d-b8a7-0e5e22c7b061">JavaDoc</a> // <a href="https://firebasestorage.googleapis.com/v0/b/devonauthproject.appspot.com/o/uploads%2FNatOrderComparatorTestSuite.java?alt=media&token=66568fbc-9659-40b9-aa1f-193266816a2f">JUnit Test Suite</a></p>
             </div>
-
-            <div class="row">
-              <div class="col-md-12">
-                <div *ngIf="currentUpload">
-                    <div class="progress">
-                        <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
-                    </div>
-                    Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
-                </div>
-              </div>  
-            </div>
-
-            <div class="row">
-              <div class="col-md-6">
-                  <label>
-                      <input type="file" (change)="detectFiles($event)">
-                  </label>
-              </div>
-              <div class="col-md-6">
-                  <button [disabled]="!selectedFiles" (click)="uploadCodeFile()">Upload Java Source</button>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-md-4">
-              </div>
-              <div class="col-md-4">
-                <p align="center"><a style="text-decoration:none;" href="/results">Submit Solution</a></p>
-              </div>
-              <div class="col-md-4">
-              </div>
-            </div>
-
-        </form>
         </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div *ngIf="currentUpload">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-animated" [ngStyle]="{ 'width': currentUpload?.progress + '%' }"></div>
+                </div>
+                Progress: {{currentUpload?.name}} | {{currentUpload?.progress}}% Complete
+            </div>
+          </div>  
+        </div>
+
+        <div class="row">
+          <div class="col-md-6">
+              <label>
+                  <input type="file" (change)="detectFiles($event)">
+              </label>
+          </div>
+          <div class="col-md-6">
+              <button [disabled]="!selectedFiles" (click)="uploadCodeFile()">Upload Java Source</button>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4">
+          </div>
+          <div class="col-md-4">
+            <p align="center"><a style="text-decoration:none;" href="/results">Submit Solution</a></p>
+          </div>
+          <div class="col-md-4">
+          </div>
+        </div>
+
+    </form>
     </div>
-
-
-    <script src="https://code.jquery.com/jquery-2.1.3.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.js"></script>
-
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-animate.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-resource.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular-route.js"></script>
-
-
-
-    <script src="https://cdn.firebase.com/js/client/2.1.0/firebase.js"></script>
-    <script src="https://cdn.firebase.com/libs/angularfire/0.9.1/angularfire.min.js"></script>
-
-    <script src="scripts/lib/moment.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.js"></script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/angularjs-toaster/0.4.9/toaster.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.2.1/js/material.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-material-design/0.2.1/js/ripples.js"></script>
-
-
-
-
-</body>
-
-</html>
+</div>
