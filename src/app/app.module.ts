@@ -19,6 +19,7 @@ import { UploadListComponent } from './uploads/upload-list/upload-list.component
 import { UploadFormComponent } from './uploads/upload-form/upload-form.component';
 import { SubmissionComponent } from './submission/submission.component';
 import { ResultsComponent } from './results/results.component';
+import {PostInfoService} from "./post-info.service";
 
 export const firebaseConfig = {
   apiKey: "AIzaSyChwh3aLut1bbNq8J2elNwUOurbM35tKHc",
@@ -50,7 +51,7 @@ export const firebaseConfig = {
     routes,
     BrowserAnimationsModule
   ],
-  providers: [AuthGuard, UploadService],
+  providers: [AuthGuard, UploadService, PostInfoService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
