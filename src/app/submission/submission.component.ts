@@ -16,15 +16,21 @@ export class SubmissionComponent implements OnInit {
   currentUpload: Upload;
   auth: any;
   displayName: any;
+  post: any;
   classFile: any;
-  codeFile: any;
+  testFile: any
+
 
   constructor(@Inject(FirebaseApp) firebaseApp: any, public af: AngularFire, public db: AngularFireDatabase,  private router: Router,private upSvc: UploadService, private postSvc: PostInfoService) {
     this.af.auth.subscribe(auth => {
       if (auth) {
         this.displayName = auth.auth.displayName;
         this.auth = auth;
-        console.log(this.postSvc.getPostId());
+        this.post = db.object('/posts/' + this.postSvc.getPostId(), { preserveSnapshot: true });
+        this.post.subscribe(snapshot => {
+          this.classFile = db.object('/uploads/' + snapshot.val().classFile)
+          this.classFile = db.object('/uploads/' + snapshot.val().testFile)
+        });
       }
     });
   }
