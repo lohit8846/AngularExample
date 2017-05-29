@@ -28,6 +28,7 @@ export class BrowsepostsComponent implements OnInit {
   }
 
   routeSubmission(id: string){
+    console.log(id);
     this.postSvc.setPostId(id);
     this.router.navigate(['/submission']);
   }
