@@ -1,4 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
+import {Http, Headers, URLSearchParams} from '@angular/http';
 import { AngularFire, AuthProviders, AuthMethods, FirebaseApp } from 'angularfire2';
 import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 import { UploadService } from '../uploads/shared/upload.service';
@@ -18,10 +19,12 @@ export class SubmissionComponent implements OnInit {
   displayName: any;
   post: any;
   classFile: any;
-  testFile: any
+  testFile: any;
+  sourceFile: any;
+  results: string;
 
 
-  constructor(@Inject(FirebaseApp) firebaseApp: any, public af: AngularFire, public db: AngularFireDatabase,  private router: Router,private upSvc: UploadService, private postSvc: PostInfoService) {
+  constructor(@Inject(FirebaseApp) firebaseApp: any, public af: AngularFire, public db: AngularFireDatabase,  private router: Router,private upSvc: UploadService, private postSvc: PostInfoService, private http: Http) {
     this.af.auth.subscribe(auth => {
       if (auth) {
         this.displayName = auth.auth.displayName;
@@ -38,6 +41,33 @@ export class SubmissionComponent implements OnInit {
 
   detectFiles(event) {
     this.selectedFiles = event.target.files;
+  }
+
+
+  uploadSubmission() {
+    if (this.sourceFile !== undefined ) {
+      const postsObservable = this.db.list('/submissions/');
+      const promise = postsObservable.push({
+        posterId: this.postSvc.getPostId(),
+        name: this.displayName,
+        createdAt: Date.now(),
+        sourceFile: this.testFile
+      });
+      promise
+        .then(obj => {
+          console.log(obj);
+          /*
+          const endpoint = 'http://api.nytimes.com/svc/search/v2/articlesearch.json';
+          const searchParams = new URLSearchParams()
+          searchParams.set('submissionId', 'lol');
+          this.http
+            .get(endpoint, {search: searchParams})
+            .map(res => res.json().response.docs);
+          */
+        })
+        .catch(err => console.log(err, 'You do not have access!'));
+      this.router.navigateByUrl('/home');
+    }
   }
 
   uploadCodeFile() {
