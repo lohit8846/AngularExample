@@ -4,6 +4,7 @@ import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database
 import { UploadService } from '../uploads/shared/upload.service';
 import { Upload } from '../uploads/shared/upload';
 import { Router } from '@angular/router';
+import {PostInfoService} from "../post-info.service";
 
 
 @Component({
@@ -16,7 +17,7 @@ export class BrowsepostsComponent implements OnInit {
   displayName: any;
   posts: any;
 
-  constructor(@Inject(FirebaseApp) firebaseApp: any, public af: AngularFire, public db: AngularFireDatabase,  private router: Router,private upSvc: UploadService) {
+  constructor(@Inject(FirebaseApp) firebaseApp: any, public af: AngularFire, public db: AngularFireDatabase,  private router: Router,private upSvc: UploadService,private postSvc: PostInfoService) {
     this.af.auth.subscribe(auth => {
       if (auth) {
         this.displayName = auth.auth.displayName;
@@ -24,6 +25,11 @@ export class BrowsepostsComponent implements OnInit {
         this.posts = this.db.list('/posts/');
       }
     });
+  }
+
+  routeSubmission(id: string){
+    this.postSvc.setPostId(id);
+    this.router.navigate(['/submission']);
   }
 
   ngOnInit() {
