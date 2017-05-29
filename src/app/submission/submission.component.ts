@@ -46,12 +46,12 @@ export class SubmissionComponent implements OnInit {
 
   uploadSubmission() {
     if (this.sourceFile !== undefined ) {
-      const postsObservable = this.db.list('/submissions/');
-      const promise = postsObservable.push({
+      const submissionsObservable = this.db.list('/submissions/');
+      const promise = submissionsObservable.push({
         posterId: this.postSvc.getPostId(),
         name: this.displayName,
         createdAt: Date.now(),
-        sourceFile: this.testFile
+        sourceFile: this.sourceFile
       });
       promise
         .then(obj => {
@@ -64,18 +64,18 @@ export class SubmissionComponent implements OnInit {
             .get(endpoint, {search: searchParams})
             .map(res => res.json().response.docs);
           */
+          this.router.navigateByUrl('/results');
         })
         .catch(err => console.log(err, 'You do not have access!'));
-      this.router.navigateByUrl('/home');
     }
   }
 
   uploadCodeFile() {
     let file = this.selectedFiles.item(0);
     this.currentUpload = new Upload(file);
-    this.upSvc.pushUpload(this.currentUpload, function(key){
+    this.upSvc.pushUpload(this.currentUpload, (key) => {
 
-      this.codeFile = key;
+      this.sourceFile = key;
     });
   }
 
