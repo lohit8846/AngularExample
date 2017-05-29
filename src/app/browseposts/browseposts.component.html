@@ -80,9 +80,9 @@
     <div class="jumbotron">
     	<div class="container">
 	        <h2>Browse Available Postings</h2>
-            <div class="row" *ngFor="let post of posts | async">
+            <div class="row" ng-if= "posts!==undefined" *ngFor="let post of posts | async">
                 <div class="col-md-12">
-                    <p><a href="/submission">{{ post.title }}</a><p>
+                    <p><a (click)="routeSubmission(post.postId)">{{ post.title }}</a><p>
                 </div>
                 <div class="col-md-12">
                     <p>Poster: {{ post.name }}<p>
