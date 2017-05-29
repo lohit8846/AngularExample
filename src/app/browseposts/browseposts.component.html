@@ -82,7 +82,7 @@
 	        <h2>Browse Available Postings</h2>
             <div class="row" ng-if= "posts!==undefined" *ngFor="let post of posts | async">
                 <div class="col-md-12">
-                    <p><a (click)="routeSubmission(post.postId)">{{ post.title }}</a><p>
+                    <p><a (click)="routeSubmission(post.$key)">{{ post.title }}</a><p>
                 </div>
                 <div class="col-md-12">
                     <p>Poster: {{ post.name }}<p>
