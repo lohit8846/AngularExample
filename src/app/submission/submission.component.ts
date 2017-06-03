@@ -1,11 +1,13 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import {Http, Headers, URLSearchParams} from '@angular/http';
+import {Http, RequestOptions, URLSearchParams} from '@angular/http';
 import { AngularFire, AuthProviders, AuthMethods, FirebaseApp } from 'angularfire2';
 import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 import { UploadService } from '../uploads/shared/upload.service';
 import { Upload } from '../uploads/shared/upload';
 import { Router } from '@angular/router';
 import {PostInfoService} from "../post-info.service";
+import 'rxjs/add/operator/map';
+
 
 @Component({
   selector: 'app-submission',
@@ -48,23 +50,25 @@ export class SubmissionComponent implements OnInit {
     if (this.sourceFile !== undefined ) {
       const submissionsObservable = this.db.list('/submissions/');
       const promise = submissionsObservable.push({
-        posterId: this.postSvc.getPostId(),
+        postId: this.postSvc.getPostId(),
         name: this.displayName,
         createdAt: Date.now(),
         sourceFile: this.sourceFile
       });
       promise
         .then(obj => {
-          console.log(obj);
-          /*
-          const endpoint = 'http://api.nytimes.com/svc/search/v2/articlesearch.json';
+          const endpoint = 'http://localhost:5000/api/compile';
           const searchParams = new URLSearchParams()
-          searchParams.set('submissionId', 'lol');
+          searchParams.set('submissionId', obj.key)
+          const options = new RequestOptions({
+            // Have to make a URLSearchParams with a query string
+            params: searchParams
+          });
           this.http
-            .get(endpoint, {search: searchParams})
-            .map(res => res.json().response.docs);
-          */
-          this.router.navigateByUrl('/results');
+            .get(endpoint, options)
+            .map(res => res.json())
+            .subscribe(data => console.log(data)
+            );
         })
         .catch(err => console.log(err, 'You do not have access!'));
     }
