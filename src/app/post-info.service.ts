@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class PostInfoService {
   postId: string;
-  result: string;
+  result: any;
 
   constructor() {
   }
@@ -16,7 +16,7 @@ export class PostInfoService {
     return this.postId;
   }
 
-  setResult(res: string) {
+  setResult(res: any) {
     this.result = res;
   }
 

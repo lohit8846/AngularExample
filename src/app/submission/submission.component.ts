@@ -23,7 +23,6 @@ export class SubmissionComponent implements OnInit {
   classFile: any;
   testFile: any;
   sourceFile: any;
-  results: string;
 
 
   constructor(@Inject(FirebaseApp) firebaseApp: any, public af: AngularFire, public db: AngularFireDatabase,  private router: Router,private upSvc: UploadService, private postSvc: PostInfoService, private http: Http) {
@@ -67,8 +66,10 @@ export class SubmissionComponent implements OnInit {
           this.http
             .get(endpoint, options)
             .map(res => res.json())
-            .subscribe(data => console.log(data)
-            );
+            .subscribe(data => {
+              this.postSvc.setResult(data);
+              this.router.navigateByUrl('/results');
+            });
         })
         .catch(err => console.log(err, 'You do not have access!'));
     }
