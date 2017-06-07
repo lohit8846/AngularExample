@@ -56,7 +56,7 @@ export class SubmissionComponent implements OnInit {
       });
       promise
         .then(obj => {
-          const endpoint = 'http://localhost:5000/api/compile';
+          const endpoint = 'https://obscure-castle-36349.herokuapp.com/api/compile';
           const searchParams = new URLSearchParams()
           searchParams.set('submissionId', obj.key)
           const options = new RequestOptions({
